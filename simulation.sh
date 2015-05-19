@@ -1,5 +1,11 @@
+
 narg=""
 iarg=""
+
+
+set -x
+
+. getOutPutFile.sh
 
 getopt_results=`getopt abi:n:g: $*`
 
@@ -9,6 +15,8 @@ then
     echo 
     exit 1
 fi
+
+COMMAND=/Users/oscarraigcolon/Arrel/git/rebuild-graph/data/threshold_accepting/rebuild_graph/rebuild_graph
 
 echo "GET OPTION $getopt_results"
 eval set -- "$getopt_results"
@@ -59,4 +67,19 @@ fi
 
 echo "Number of executions $narg"
 
+for i in `seq 1 $narg`;
+        do
+                echo $i
+		x=$i
+		y=$i
+		z=$i
+		indicator=$iarg
+		nameOfOutputFile=""
+		getOutPutFile $indicator $x $y $z nameOfOutputFile
+		echo $nameOfOutputFile
+		ARGS1="  --graphFile ${garg} --algorithm ${iarg} --k 0.95 --To 0.3 --TMin 0.00001 --nMax 200  --output-format-adjlist"
+		ARGS2=" --seed_x  ${x}  --seed_y  ${y}  --seed_z ${z} --threshold-accepting --outputFileSufix $nameOfOutputFile"
+		`$COMMAND $ARGS1 $ARGS2 $nameOfOutputFile`
+
+	done    
 exit 0

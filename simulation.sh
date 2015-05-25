@@ -1,4 +1,5 @@
 
+
 narg=""
 iarg=""
 
@@ -74,12 +75,12 @@ for i in `seq 1 $narg`;
 		y=$i
 		z=$i
 		indicator=$iarg
-		nameOfOutputFile=""
+		nameOfOutputFile="output_file_orc"
 		getOutPutFile $indicator $x $y $z nameOfOutputFile
 		echo $nameOfOutputFile
-		ARGS1="  --graphFile ${garg} --algorithm ${iarg} --k 0.95 --To 0.3 --TMin 0.00001 --nMax 200  --output-format-adjlist"
+		ARGS1="  --graphFile ${garg} --algorithm ${iarg} --k 0.95 --To 0.3 --TMin 0.00001 --nMax 1  --output-format-adjlist"
 		ARGS2=" --seed_x  ${x}  --seed_y  ${y}  --seed_z ${z} --threshold-accepting --outputFileSufix $nameOfOutputFile"
-		`$COMMAND $ARGS1 $ARGS2 $nameOfOutputFile`
+		`echo $COMMAND $ARGS1 $ARGS2 `
 
 	done    
 exit 0

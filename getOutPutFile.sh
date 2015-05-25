@@ -1,6 +1,6 @@
 #!/bin/bash
 
-testgetOutPutFile=11
+testgetOutPutFile=1
 . getIndicatorName.sh 
 function getOutPutFile() {
 
